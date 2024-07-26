@@ -2,36 +2,42 @@ use std:: io;
 
 fn main()
 {
- let mut x :[u32;7] = [10,23,44,56,78,90,101];
- let mut first : u32;
- let mut last :u32;
- let mut middle : u32;
- let found = false; 
- let input = String::new();
+ let  x= [10,23,44,56,78,90,101];
+ let mut first =0;
+ let mut last = x.len()-1;
+ let mut middle = (first+last)/2;
+ let mut found = false; 
+ let mut input = String::new();
 
  
- print!("Enter the number: ");
+ 
  io::stdin().read_line(&mut input).expect("Failed to read line");
  let input = input.trim().parse::<u32>().unwrap();
 
- while !found
+ while first<=last
  {
-    first = 0;
-    last = x.len() as u32 - 1;
-    middle = (first + last) / 2;
+    middle = (first + last) / 2;  
     if x[middle] == input
     {
         found = true;
+        break;
     }
     else if x[middle] < input
     {
         first = middle + 1;
     } 
-    else
+    else if x[middle] > input
     {
         last = middle - 1;
     }
  }
+ if found
+ {
  println!("Found {} at index {}", input, middle);
+ }
+ else
+ {
+ print!("whigga");
+ }
 }
 
